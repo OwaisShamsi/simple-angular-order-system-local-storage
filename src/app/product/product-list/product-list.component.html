@@ -1,0 +1,27 @@
+<div class="container text-center">
+  <div class="row">
+    <div class="col" style="font-size: larger"><strong>Id</strong></div>
+    <div class="col" style="font-size: larger"><strong>Name</strong></div>
+    <div class="col" style="font-size: larger">
+      <strong>Description</strong>
+    </div>
+    <div class="col" style="font-size: larger"><strong>Quantity</strong></div>
+    <div class="col" style="font-size: larger"><strong>Amount</strong></div>
+    <div class="col" style="font-size: larger"><strong>Actions</strong></div>
+
+    <hr />
+  </div>
+  <div class="row" *ngFor="let product of productList; let i = index">
+    <div class="col">{{ i + 1 }}</div>
+    <div class="col">{{ product.name }}</div>
+    <div class="col">{{ product.description }}</div>
+    <div class="col">{{ product.quantity | number }}</div>
+    <div class="col">{{ product.amount | number }}</div>
+    <div class="col">
+      <button class="btn btn-primary" (click)="onEdit(i)">Edit</button
+      ><button class="btn btn-danger" (click)="onDelete(i)">Delete</button>
+    </div>
+
+    <hr />
+  </div>
+</div>

@@ -1,0 +1,119 @@
+<div mat-dialog-title>Edit Order</div>
+<form #myForm="ngForm" ngform (ngSubmit)="onEditSubmit()">
+  <div mat-dialog-content>
+    <div class="row">
+      <div class="col-xl-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Customer Name</mat-label>
+          <input
+            matInput
+            type="text"
+            name="customer_Name"
+            placeholder="Enter Customer Name"
+            [(ngModel)]="MOrder.customer_Name"
+            required
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-xl-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Purchased Date</mat-label>
+          <input
+            matInput
+            type="date"
+            placeholder="Enter Purchased Date"
+            name="purchased_Date"
+            [(ngModel)]="MOrder.purchased_Date"
+            required
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Delivery Date</mat-label>
+          <input
+            matInput
+            type="date"
+            placeholder="Enter Delivery Date"
+            name="delivery_date"
+            [(ngModel)]="MOrder.delivery_date"
+            required
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-xl-6">
+        <h3 style="text-align: right">Select Products</h3>
+      </div>
+      <div class="col-xl-6">
+        <button class="btn btn-success" (click)="onAddProduct()" type="button">
+          Add Product
+        </button>
+      </div>
+    </div>
+
+    <div
+      class="row selectProduct"
+      *ngFor="let item of dataArray; let i = index"
+    >
+      <div class="col-xl-5">
+        <mat-form-field appearance="fill">
+          <mat-label>Select Product</mat-label>
+          <mat-select
+            name="product_Name{{ i }}"
+            [(ngModel)]="item.product_Name"
+            required
+          >
+            <mat-option *ngFor="let product of products" [value]="product.name">
+              {{ product.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-xl-5">
+        <mat-form-field appearance="outline">
+          <mat-label>Quantity</mat-label>
+          <input
+            matInput
+            type="number"
+            placeholder="Enter Quantity"
+            name="quantity{{ i }}"
+            [(ngModel)]="item.quantity"
+            required
+          />
+        </mat-form-field>
+      </div>
+      <div
+        class="col-xl-2"
+        style="display: flex; justify-content: center; align-items: center"
+      >
+        <button
+          *ngIf="i != 0"
+          type="button"
+          class="btn btn-danger"
+          (click)="onRemoveProduct(i)"
+        >
+          -
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6"></div>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button (click)="onCancel()">Cancel</button>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="myForm.invalid"
+    >
+      Edit
+    </button>
+  </div>
+</form>

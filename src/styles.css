@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+mat-form-field {
+  margin-top: 25px;
+}
+
+mat-dialog-actions,
+button {
+  flex: 1;
+}
+
+.header {
+  display: flex;
+  margin: 10px;
+}
